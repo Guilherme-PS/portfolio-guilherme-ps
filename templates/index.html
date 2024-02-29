@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guilherme-PS</title>
+
+    <link rel="icon" href="static/imgs/PS-icon.svg">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- SWIPER-JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/media-queries.css">
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <ul>
+                <li>
+                    <a href="#homepage" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="left" data-bs-title="Início"><i class="fa-solid fa-house"></i></a>
+                </li>
+                
+                <li>
+                    <a href="#aboutme" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="left" data-bs-title="Sobre Mim"><i class="fa-solid fa-user"></i></a>
+                </li>
+                
+                <li>
+                    <a href="#projects" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="left" data-bs-title="Projetos"><i class="fa-solid fa-lightbulb"></i></a>
+                </li>
+                
+                <li>
+                    <a href="#contact" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="left" data-bs-title="Contato"><i class="fa-solid fa-envelope"></i></a>
+                </li>
+                
+                <li>
+                    <a class="theme-btn" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="left" data-bs-title="Tema"><i class="fa-solid fa-moon theme-icon"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="scrollspy" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-smooth-scroll="true" tabindex="0">
+        <section class="d-flex justify-content-center align-items-center m-0 p-0" id="homepage">
+            <div class="container">
+                <img class="img-fluid my-2" src="{{ profile_img }}" width="175" alt="Profile Image">
+
+                <h1 class="mb-0">Guilherme de Paiva Silva</h1>
+
+                <h4>Estudante de Análise e Desenvolvimento de Sistemas</h4>
+
+                <ul class="list-inline mb-1">
+                    <li class="list-inline-item px-2"><small>Python</small></li>
+                    <li class="list-inline-item px-2"><small>Pandas</small></li>
+                    <li class="list-inline-item px-2"><small>Flask</small></li>
+                    <li class="list-inline-item px-2"><small>Bootstrap</small></li>
+                </ul>
+
+                <div class="mt-2">
+                    <a class="me-2" href="https://github.com/Guilherme-PS" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/guilherme-de-paiva/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+
+                <a class="btn border-0 fw-bold mt-4" href="{{ url_for('download') }}">DOWNLOAD CV</a>
+            </div>
+        </section>
+
+        <section id="aboutme">
+            <div class="container">
+                <div class="mb-4">
+                    <h1 class="mb-0">SOBRE MIM</h1>
+                    <h6>Deixe-me fazer minha apresentação</h6>
+                </div>
+
+                <p>Eu sou o Guilherme tenho {{ age }} anos, nasci no Rio de Janeiro, e me encontro atualmente no 5° período do curso de Análise e Desenvolvimento de Sistemas. Meu primeiro contato com a tecnologia ocorreu aos 9 anos, mas foi aos 18 que descobri um forte interesse por programação. Inicialmente, tinha dúvidas sobre minhas áreas de interesse, mas ao longo do tempo na faculdade, encontrei meu foco nas áreas de <span>Ciência de Dados</span> e <span>Machine Learning</span>.</p>
+                <p>Atualmente, estou em busca de uma oportunidade de estágio/emprego onde possa aplicar os conhecimentos adquiridos em projetos pessoais e contribuir de forma significativa na área que me for designada.</p>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h1 class="mb-0">PROJETOS</h1>
+                    <h6>Alguns dos meus projetos</h6>
+                </div>
+
+                {% if projects != None %}
+                <div class="swiper-container">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            {% for project in projects %}
+                                <div class="swiper-slide">
+                                    <div class="w-100 mb-3">
+                                        <img class="w-100 mb-2" src="{{ projects[project]['banner'] }}" alt="Project Image">
+
+                                        <div class="card-body p-0">
+                                            <h5 class="card-title">{{ project }}</h5>
+                                            <p class="card-text mb-2 lh-sm">{{ projects[project]["description"] }}</p>
+                                            <ul class="list-inline mb-3">
+                                                {% for language in projects[project]["languages"] %}
+                                                <li class="list-inline-item px-2"><small>{{ language }}</small></li>
+                                                {% endfor %}
+                                            </ul>
+                                            <a class="btn border-0 px-2 py-1" href="{{ projects[project]['url'] }}" target="_blank">Detalhes<i class="fa-solid fa-arrow-up-long"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>     
+                    
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+
+                {% elif projects == None %}
+                <div class="text-center w-100">
+                    <p>Em breve, meus projetos fixados serão exibidos aqui. Enquanto isso, sinta-se à vontade para explorar meus outros trabalhos clicando no botão abaixo.</p>
+                </div>
+                {% endif %}
+                
+                <div class="text-center ">
+                    <a class="btn border-0 fw-bold" href="https://github.com/Guilherme-PS?tab=repositories" target="_blank">MAIS PROJETOS</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h1 class="mb-0">CONTATO</h1>
+                    <h6>Me envie sua proposta por E-mail</h6>
+
+                    <div class="position-relative mt-5">
+                        <a class="border-0 text-decoration-none email" type="button" id="liveToastBtn">GUILHERMEPSCONTACT@GMAIL.COM</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <hr>
+            <div class="row mx-auto flex-column-reverse flex-lg-row align-items-center">
+                <div class="col-12 col-lg-9 my-auto">
+                    <h6>Made By <span>Guilherme PS</span> - Copyright 2024</h6>
+                </div>
+
+                <div class="col-12 col-lg-3 my-auto mb-1">
+                    <a href="https://github.com/Guilherme-PS" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a class="mx-2" href="https://www.linkedin.com/in/guilherme-de-paiva/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="{{ url_for('download') }}"><i class="fa-solid fa-file-pdf"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+    <script src="static/js/darkMode.js"></script>
+    <script src="static/js/clickAndCopy.js"></script>
+
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="static/js/bootstrapTooltip.js"></script>
+
+    <!-- SWIPER-JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="static/js/swiper.js"></script>
+</html>

@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Inconsolata&family=Montserrat:wght@100..900&display=swap');
+
+:root {
+    --bg-primary: #FFFEFE;
+    --bg-secondary: #E5E5E5;
+    --bg-tertiary: #F6F7F8;
+    --font-primary: #505050;
+    --font-secondary: #000000;
+    --blur-color: rgba(255,255,255, 0.8);
+    --sidebar-bg: rgba(122, 122, 122, 0.24);
+    --sidebar-border: rgba(122, 122, 122, 0.24);
+}
+
+.darkmode {
+    --bg-primary: #272727;
+    --bg-secondary: #202020;
+    --bg-tertiary: #303030;
+    --font-primary: #BEBEBE;
+    --font-secondary: #FFFFFF;
+    --blur-color: rgba(0,0,0, 0.8);
+    --sidebar-bg: rgba(25, 25, 25, 0.25);
+    --sidebar-border: rgba(255, 255, 255, 0.125);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--bg-secondary);
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: var(--font-primary);
+    border-radius: 100px;
+}
+
+/* Global */
+html, body {
+    scroll-behavior: smooth;
+    width: 100%;
+    height: 100%;
+}
+
+main, footer {
+    background-color: var(--bg-primary);
+    color: var(--font-primary);
+    transition: all 250ms ease;
+}
+
+/* Navbar */
+#navbar {
+    color: var(--font-primary);
+    position: fixed;
+    transition: width 600ms ease;
+    z-index: 10;
+}
+
+#navbar ul {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    list-style: None;
+    padding: 0;
+    margin: 0;
+}
+
+#navbar li {
+    width: 100%;
+}
+
+#navbar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
+    text-decoration: None;
+    color: var(--font-secondary);
+    filter: opacity(40%);
+}
+
+#navbar ul a.active, nav .show > a {
+    filter: opacity(100%);
+}
+
+#navbar .theme-btn {
+    color: var(--font-secondary);
+    filter: opacity(100%);
+    cursor: pointer;
+}
+
+/* Homepage */
+#homepage {
+    height: 100vh;
+    text-align: center;
+}
+
+#homepage h4, #homepage p, #aboutme h6, #aboutme p, #projects h6, #projects p, #contact h6, #contact p, footer h6 {
+    font-family: "Inconsolata", monospace;
+}
+
+#homepage h1, footer span {
+    color: var(--font-secondary);
+    font-family: "Anonymous Pro", monospace;
+}
+
+#homepage img {
+    border: 2px solid var(--font-primary);
+    border-radius: 100%;
+}
+
+#homepage li, #projects li {
+    background-color: var(--bg-tertiary);
+}
+
+#homepage a, footer a {
+    color: var(--font-primary);
+    font-family: "Montserrat", sans-serif;
+}
+
+#homepage .btn, #projects a, #projects button, #contact a {
+    background-color: var(--bg-secondary);
+    color: var(--font-secondary);
+    font-family: "Montserrat", sans-serif;
+    transition: all 0.25s ease-in-out;
+}
+
+#homepage .btn, #projects .text-center a {
+    padding: 10px 15px;
+    font-size: 0.75rem;
+}
+
+#homepage a:hover, #projects a:hover, footer a:hover {
+    transform: scale(1.05);
+}
+
+#homepage i, footer i {
+    transition: all 0.25s ease-in-out;
+}
+
+#homepage i:hover, footer i:hover {
+    transform: translateY(-5px);
+}
+
+/* About Me */
+#aboutme span {
+    color: var(--font-secondary);
+}
+
+/* Heading */
+#aboutme h1, #projects h1, #contact h1 {
+    color: var(--font-secondary);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 100;
+}
+
+/* Projects */
+#projects h4::before {
+    content: "★";
+    font-size: 0.95rem;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+#projects h5 {
+    color: var(--font-secondary);
+    font-family: "Montserrat", sans-serif;
+}
+
+#projects a {
+    font-size: 0.8rem;
+}
+
+#projects i {
+    margin-left: 7px;
+    transform: rotate(45deg);
+}
+
+#projects img {
+    border: 3px solid var(--bg-tertiary);
+    border-radius: 7px;
+}
+
+#projects .card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+/* Bootstrap Tooltip */
+.custom-tooltip {
+    display: None;
+}
+
+/* Contact */
+#contact a {
+    padding: 20px 40px;
+}
+
+#contact a::before {
+    background-color: var(--blur-color);
+    font-weight: bold;
+    color: var(--font-secondary);
+    font-family: "Montserrat", sans-serif;
+    content: attr(data-content);
+    padding: 20px 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+#contact a:hover::before {
+    opacity: 1;
+}
