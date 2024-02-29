@@ -50,6 +50,12 @@
         width: 60%;
     }
 
+    .custom-tooltip {
+        --bs-tooltip-bg: var(--bg-secondary);
+        --bs-tooltip-color: var(--font-secondary);
+        transition: opacity 0.25s ease-in-out;
+    }
+
     .container {
         padding: 5rem 10rem;
     }
@@ -215,5 +221,9 @@
 
     #navbar li {
         justify-content: center;
+    }
+
+    .custom-tooltip {
+        display: None;
     }
 }

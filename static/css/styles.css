@@ -190,11 +190,6 @@ main, footer {
     overflow: hidden;
 }
 
-/* Bootstrap Tooltip */
-.custom-tooltip {
-    display: None;
-}
-
 /* Contact */
 #contact a {
     padding: 20px 40px;
