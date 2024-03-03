@@ -43,7 +43,7 @@ def home():
 
 @app.route("/download")
 def download():
-    return send_from_directory("static", "files/Guilherme-de-Paiva.pdf", as_attachment=True)
+    return send_from_directory("static", "files/Guilherme_de_Paiva_CV.pdf", as_attachment=True)
 
 
 if __name__ == "__main__":
